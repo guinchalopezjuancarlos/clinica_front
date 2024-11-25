@@ -1,0 +1,169 @@
+/* ====== Variables de Color ====== */
+:root {
+  --bg-primary: #f3f8f6; /* Fondo general */
+  --bg-sidebar: #ffffff; /* Fondo del menú lateral */
+  --bg-card: #e6f7f2; /* Fondo de las tarjetas */
+  --accent-color: #38a3a5; /* Verde principal */
+  --text-color: #073b4c; /* Texto oscuro */
+  --text-muted: #5a6b72; /* Texto atenuado */
+  --hover-bg: #bce6df; /* Fondo al pasar el mouse */
+  --border-radius: 12px; /* Radio de bordes */
+  --shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+/* ====== Reset Básico ====== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-color);
+}
+
+/* ====== Contenedor Principal ====== */
+.menu-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ====== Sidebar ====== */
+.sidebar {
+  width: 280px;
+  background-color: var(--bg-sidebar);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--accent-color);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.sidebar nav {
+  flex-grow: 1;
+}
+
+.sidebar .menu-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar .menu-items li {
+  margin-bottom: 15px;
+}
+
+.sidebar .menu-items li a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-color);
+  padding: 12px 15px;
+  border-radius: var(--border-radius);
+  font-size: 1.1rem;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.sidebar .menu-items li a:hover {
+  background-color: var(--hover-bg);
+  transform: scale(1.02);
+}
+
+.logout-btn {
+  margin-top: auto;
+  padding: 12px;
+  border: none;
+  background-color: var(--accent-color);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #2e8b89;
+  transform: translateY(-3px);
+}
+
+/* ====== Contenido Principal ====== */
+.main-content {
+  flex-grow: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.header {
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.header h1 {
+  font-size: 2.2rem;
+  color: var(--text-color);
+  margin-bottom: 5px;
+}
+
+.header p {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+}
+
+/* ====== Cards ====== */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background-color: var(--bg-card);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.card p {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* ====== Botones y Elementos Flotantes ====== */
+.floating-buttons button {
+  background-color: var(--accent-color);
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.floating-buttons button:hover {
+  background-color: #2e8b89;
+  transform: scale(1.1);
+}

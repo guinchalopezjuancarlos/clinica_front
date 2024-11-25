@@ -1,0 +1,96 @@
+/* login.css */
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url('/hq720.jpg'); /* Ruta de la imagen */
+  background-size: cover; /* Ajusta la imagen al tamaño de la pantalla */
+  background-position: center;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  font-size: 2.5rem;
+  color: #149630;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+  color: #34495e;
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  margin-bottom: 1.2rem;
+  width: 100%;
+  max-width: 350px;
+  background-color: rgba(150, 36, 36, 0.8); /* Fondo semi-transparente */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.input-group label {
+  font-size: 1rem;
+  color: #333;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #2980b9;
+}
+
+button {
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  color: white;
+  background-color: #2980b9;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 350px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #3498db;
+}
+
+.error {
+  color: red;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 350px;
+  margin-top: 1rem;
+}
+
+.links a {
+  color: #2980b9;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
