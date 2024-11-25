@@ -30,13 +30,19 @@ export default function Paciente() {
           Authorization: `Token ${localStorage.getItem('token')}`
         }
       })
+      console.log(response.data)
       setPacientes(response.data)
     } catch (error) {
+      console.log(error)
       setError(
         error.response?.data?.message || 'Error al obtener los pacientes'
       )
     }
   }
+
+  useEffect(() => {
+    getPacientes()
+  }, [])
 
   // Nuevo manejador para los cambios en el formulario
   const handleInputChange = e => {
@@ -57,7 +63,7 @@ export default function Paciente() {
         !formData.direccion ||
         !formData.sexo ||
         !formData.telefono,
-      !formData.historial_medico || !formData.seguro)
+      !formData.historial_medico)
     ) {
       setError('Por favor, complete todos los campos')
       return
@@ -133,10 +139,6 @@ export default function Paciente() {
       setError(error.response?.data?.message || 'Error al eliminar el paciente')
     }
   }
-
-  useEffect(() => {
-    getPacientes()
-  }, [])
 
   const calcularEdad = edad => {
     return new Date().getFullYear() - parseInt(edad)
