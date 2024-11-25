@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './Paciente.css'
 
-const PACIENTE = {
+const PACIENTE_INICIAL = {
   nombre: '',
   fecha_nacimiento: '',
   sexo: 'M',
@@ -16,11 +16,11 @@ const PACIENTE = {
 const API_URL = 'http://localhost:8000/api/pacientes'
 
 export default function Paciente() {
-  const [pacientes, setPacientes] = useState([...PACIENTE])
+  const [pacientes, setPacientes] = useState([])
   const [editMode, setEditMode] = useState(false)
   const [editPacienteId, setEditPacienteId] = useState(null)
   const [error, setError] = useState('')
-  const [formData, setFormData] = useState(PACIENTE)
+  const [formData, setFormData] = useState(PACIENTE_INICIAL)
 
   // Función para obtener todos los pacientes
   const getPacientes = async () => {
@@ -52,13 +52,12 @@ export default function Paciente() {
     e.preventDefault()
 
     if (
-      !formData.nombre ||
-      !formData.fecha_nacimiento ||
-      !formData.direccion ||
-      !formData.sexo ||
-      !formData.telefono,
-      !formData.historial_medico ||
-      !formData.seguro
+      (!formData.nombre ||
+        !formData.fecha_nacimiento ||
+        !formData.direccion ||
+        !formData.sexo ||
+        !formData.telefono,
+      !formData.historial_medico || !formData.seguro)
     ) {
       setError('Por favor, complete todos los campos')
       return
@@ -91,13 +90,7 @@ export default function Paciente() {
         setPacientes(prev => [...prev, response.data])
       }
       // Limpiar el formulario después de enviar
-      setFormData({
-        nombre: '',
-        fechaNacimiento: '',
-        direccion: '',
-        sexo: 'M',
-        telefono: ''
-      })
+      setFormData(PACIENTE_INICIAL)
       setError('')
     } catch (error) {
       setError(
@@ -118,6 +111,27 @@ export default function Paciente() {
       sexo: paciente.sexo,
       telefono: paciente.telefono
     })
+  }
+
+  const handleDeletePaciente = async id => {
+    if (!window.confirm('¿Está seguro que desea eliminar este paciente?')) {
+      return
+    }
+
+    try {
+      await axios.delete(`${API_URL}/${id}`, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('token')}`
+        }
+      })
+
+      // Actualizar el estado eliminando el paciente
+      setPacientes(prevPacientes =>
+        prevPacientes.filter(paciente => paciente.id !== id)
+      )
+    } catch (error) {
+      setError(error.response?.data?.message || 'Error al eliminar el paciente')
+    }
   }
 
   useEffect(() => {
@@ -240,10 +254,3 @@ export default function Paciente() {
     </div>
   )
 }
-
-
-
-
-
-
-
